@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scope</title>
+</head>
+<body>
+
+  <h2>Check console to see the madness!</h2>
+
+  <script>
+    var outerFunction = function() {
+
+      var x = 5;
+
+      var nestedFunction = function() {
+
+        var y = 7;
+
+        // What will this print?
+        console.log("X: " + x);
+// console prints x = 5
+
+        // What will this print?
+        console.log("Y: " + y);
+// console prints y = 7
+
+        var z = 10;
+        // What will this print?
+        console.log("Z (inside): " + z);
+// console prints z (inside) = 10
+      };
+
+      return nestedFunction;
+    };
+
+    var myFunction = outerFunction();
+    myFunction();
+
+    // What will this print?
+    console.log("Z (outside): " + z);
+// console prints that z is not defined. it cannot call this function because z is defined in the nested function above
+
+</script>
+
+</body>
+</html>
